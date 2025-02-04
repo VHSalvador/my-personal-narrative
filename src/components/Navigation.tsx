@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Smile } from "lucide-react";
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -31,7 +32,10 @@ const Navigation = () => {
         <div className="hidden md:flex items-center space-x-8">
           <NavLink to="/about">About</NavLink>
           <NavLink to="/work">Work</NavLink>
-          <NavLink to="/passions">Passions</NavLink>
+          <NavLink to="/fun-facts" className="flex items-center gap-2">
+            <Smile className="w-4 h-4" />
+            Fun Facts
+          </NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </div>
       </div>
@@ -39,10 +43,10 @@ const Navigation = () => {
   );
 };
 
-const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
+const NavLink = ({ to, children, className = "" }: { to: string; children: React.ReactNode; className?: string }) => (
   <Link
     to={to}
-    className="font-montserrat text-sm text-primary-muted hover:text-primary transition-colors"
+    className={`font-montserrat text-sm text-primary-muted hover:text-primary transition-colors ${className}`}
   >
     {children}
   </Link>
