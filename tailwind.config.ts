@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,15 +26,15 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#2C3333",
-          soft: "#404747",
-          muted: "#5C6363",
+          DEFAULT: "#5B8FB9",
+          soft: "#7BA7C7",
+          muted: "#9ABFD5",
         },
         accent: {
           green: "#A8B0A6",
           terra: "#E2725B",
         },
-        cream: "#FAF9F6",
+        cream: "#F5F5DC",
       },
       fontFamily: {
         playfair: ["Playfair Display", "serif"],
