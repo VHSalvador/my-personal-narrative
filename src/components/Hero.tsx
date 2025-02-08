@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -44,18 +46,18 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="flex flex-col md:flex-row items-center justify-center gap-4"
         >
-          <a
-            href="#about"
+          <Link
+            to="/about"
             className="px-8 py-3 bg-primary text-cream rounded-full font-montserrat text-sm tracking-wide hover:bg-primary-soft transition-colors"
           >
             Learn More About Me
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            to="/contact"
             className="px-8 py-3 border border-primary text-primary rounded-full font-montserrat text-sm tracking-wide hover:bg-primary hover:text-cream transition-all"
           >
             Get in Touch
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
