@@ -1,5 +1,5 @@
 
-import { BookOpen, BrainCircuit, ChessKnight, Code, Laptop } from "lucide-react";
+import { BookOpen, BrainCircuit, Code, Laptop, Sword } from "lucide-react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -160,7 +160,7 @@ const workExperience = [
     description: "Personalized lessons for students of all levels, focusing on simplifying difficult concepts and building confidence.",
   },
   {
-    icon: <ChessKnight className="w-6 h-6 text-accent-terra" />,
+    icon: <Sword className="w-6 h-6 text-accent-terra" />,
     title: "Chess Coaching",
     description: "Beginner-friendly coaching to develop strategic thinking and problem-solving skills.",
   },
