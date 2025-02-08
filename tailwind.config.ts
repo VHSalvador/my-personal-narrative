@@ -26,13 +26,14 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#5B8FB9",
-          soft: "#7BA7C7",
-          muted: "#9ABFD5",
+          DEFAULT: "#6C8EAD",
+          soft: "#8BA3BC",
+          muted: "#A9B8CB",
         },
         accent: {
-          green: "#A8B0A6",
-          terra: "#E2725B",
+          DEFAULT: "#1E3A8A",
+          soft: "#2B4A9F",
+          muted: "#385AB4",
         },
         cream: "#F5F5DC",
       },
@@ -69,3 +70,4 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
