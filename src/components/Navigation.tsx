@@ -26,7 +26,7 @@ const Navigation = () => {
           to="/"
           className="font-playfair text-2xl text-primary hover:text-primary-soft transition-colors"
         >
-          Personal Brand
+          Salvador Villarroel 
         </Link>
         <div className="hidden md:flex items-center space-x-8">
           <NavLink to="/about">About</NavLink>
