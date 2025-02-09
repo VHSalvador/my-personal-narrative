@@ -20,14 +20,14 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-primary/80 backdrop-blur-md py-4"
-          : "bg-transparent py-6"
+          ? "bg-secondary/80 backdrop-blur-md py-4"
+          : "bg-secondary py-6"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link
           to="/"
-          className="font-playfair text-2xl text-secondary hover:text-secondary-dark transition-colors"
+          className="font-playfair text-2xl text-primary hover:text-primary-dark transition-colors"
         >
           Personal Brand
         </Link>
@@ -38,9 +38,9 @@ const Navigation = () => {
           aria-label="Toggle menu"
         >
           {isMenuOpen ? (
-            <X className="h-6 w-6 text-secondary" />
+            <X className="h-6 w-6 text-primary" />
           ) : (
-            <Menu className="h-6 w-6 text-secondary" />
+            <Menu className="h-6 w-6 text-primary" />
           )}
         </button>
 
@@ -55,7 +55,7 @@ const Navigation = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-primary/95 backdrop-blur-md md:hidden py-4 shadow-lg">
+          <div className="absolute top-full left-0 right-0 bg-secondary/95 backdrop-blur-md md:hidden py-4 shadow-lg">
             <div className="flex flex-col space-y-4 px-6">
               <NavLink to="/about">About</NavLink>
               <NavLink to="/work">Work</NavLink>
@@ -75,7 +75,7 @@ const Navigation = () => {
 const NavLink = ({ to, children, className = "" }: { to: string; children: React.ReactNode; className?: string }) => (
   <Link
     to={to}
-    className={`font-montserrat text-sm text-secondary hover:text-accent transition-colors ${className}`}
+    className={`font-montserrat text-sm text-primary hover:text-accent-contrast transition-colors ${className}`}
   >
     {children}
   </Link>
