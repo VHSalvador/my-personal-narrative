@@ -20,14 +20,14 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-primary/95 backdrop-blur-md py-4"
-          : "bg-primary py-6"
+          ? "bg-cream/80 backdrop-blur-md py-4"
+          : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link
           to="/"
-          className="font-playfair text-2xl text-neutral-white hover:text-beige transition-colors"
+          className="font-playfair text-2xl text-primary hover:text-primary-soft transition-colors"
         >
           Personal Brand
         </Link>
@@ -39,9 +39,9 @@ const Navigation = () => {
           aria-label="Toggle menu"
         >
           {isMenuOpen ? (
-            <X className="h-6 w-6 text-neutral-white" />
+            <X className="h-6 w-6 text-primary" />
           ) : (
-            <Menu className="h-6 w-6 text-neutral-white" />
+            <Menu className="h-6 w-6 text-primary" />
           )}
         </button>
 
@@ -58,7 +58,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-primary/95 backdrop-blur-md md:hidden py-4 shadow-lg">
+          <div className="absolute top-full left-0 right-0 bg-cream/95 backdrop-blur-md md:hidden py-4 shadow-lg">
             <div className="flex flex-col space-y-4 px-6">
               <NavLink to="/about">About</NavLink>
               <NavLink to="/work">Work</NavLink>
@@ -78,7 +78,7 @@ const Navigation = () => {
 const NavLink = ({ to, children, className = "" }: { to: string; children: React.ReactNode; className?: string }) => (
   <Link
     to={to}
-    className={`font-montserrat text-sm text-beige hover:text-beige-light transition-colors ${className}`}
+    className={`font-montserrat text-sm text-primary-muted hover:text-primary transition-colors ${className}`}
   >
     {children}
   </Link>

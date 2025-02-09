@@ -13,7 +13,7 @@ const Hero = () => {
   if (!mounted) return null;
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-beige px-6">
+    <section className="min-h-screen flex items-center justify-center bg-cream px-6">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -41,7 +41,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="font-inter text-neutral text-lg md:text-xl mb-8 leading-relaxed"
+            className="font-inter text-neutral-dark text-lg md:text-xl mb-8 leading-relaxed"
           >
             Hi, I'm a business IT student at Corvinus University with a passion for teaching,
             technology, and connecting with people. Let's explore new ideas together!
@@ -54,13 +54,13 @@ const Hero = () => {
           >
             <Link
               to="/about"
-              className="px-8 py-3 bg-primary-dark text-neutral-white hover:bg-primary transition-colors rounded-full font-montserrat text-sm tracking-wide"
+              className="px-8 py-3 bg-primary text-cream hover:bg-primary-soft transition-colors rounded-full font-montserrat text-sm tracking-wide"
             >
               Learn More About Me
             </Link>
             <Link
               to="/contact"
-              className="px-8 py-3 border border-primary-dark text-primary-dark hover:bg-primary-dark hover:text-neutral-white transition-all rounded-full font-montserrat text-sm tracking-wide"
+              className="px-8 py-3 border border-primary text-primary hover:bg-primary hover:text-cream-soft transition-all rounded-full font-montserrat text-sm tracking-wide"
             >
               Get in Touch
             </Link>

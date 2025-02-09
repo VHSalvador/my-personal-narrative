@@ -26,22 +26,25 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#5B8FB9",    // Steel Blue (main)
-          hover: "#4A7DA7",      // Darker Steel Blue for hover
-          light: "#7CAAD4",      // Lighter Steel Blue
-          dark: "#1E3A8A",       // Deep Navy Blue
+          DEFAULT: "#6C8EAD", // Muted blue (main)
+          soft: "#8BA3BC",    // Softer blue
+          muted: "#A9B8CB",   // Very soft blue
+          dark: "#4A6F8C",    // Darker blue variant
         },
-        beige: {
-          DEFAULT: "#F5F5DC",    // Soft Beige (main)
-          light: "#FAFAF2",      // Lighter Beige
-          hover: "#EFEFE0",      // Hover Beige
-          dark: "#E5E5CC",       // Darker Beige
+        accent: {
+          DEFAULT: "#1E3A8A", // Deep navy
+          soft: "#2B4A9F",    // Softer navy
+          muted: "#385AB4",   // Brighter navy
+        },
+        cream: {
+          DEFAULT: "#F5F5DC", // Classic beige
+          soft: "#FEF7CD",    // Soft yellow tint
+          warm: "#FDE1D3",    // Soft peach
         },
         neutral: {
-          DEFAULT: "#333333",    // Dark Gray (text)
-          light: "#666666",      // Light Gray (secondary text)
-          lighter: "#999999",    // Lighter Gray (disabled text)
-          white: "#FFFFFF",      // Pure White
+          DEFAULT: "#8E9196", // Neutral gray
+          dark: "#333333",    // Dark gray for text
+          light: "#F4F4F6",   // Light gray for backgrounds
         }
       },
       fontFamily: {
