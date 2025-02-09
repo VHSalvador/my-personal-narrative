@@ -13,7 +13,7 @@ const Hero = () => {
   if (!mounted) return null;
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-cream px-6">
+    <section className="min-h-screen flex items-center justify-center bg-primary px-6">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -25,7 +25,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-block font-montserrat text-primary-dark mb-4 tracking-wide"
+            className="inline-block font-montserrat text-secondary-dark mb-4 tracking-wide"
           >
             CURIOUS MIND, ADAPTIVE SPIRIT
           </motion.span>
@@ -33,7 +33,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-playfair text-4xl md:text-6xl text-primary mb-6"
+            className="font-playfair text-4xl md:text-6xl text-secondary mb-6"
           >
             Exploring the Intersection of People, Technology, and Creativity
           </motion.h1>
@@ -54,13 +54,13 @@ const Hero = () => {
           >
             <Link
               to="/about"
-              className="px-8 py-3 bg-primary text-cream hover:bg-primary-soft transition-colors rounded-full font-montserrat text-sm tracking-wide"
+              className="px-8 py-3 bg-accent hover:bg-accent-light transition-colors rounded-full font-montserrat text-primary-light text-sm tracking-wide"
             >
               Learn More About Me
             </Link>
             <Link
               to="/contact"
-              className="px-8 py-3 border border-primary text-primary hover:bg-primary hover:text-cream-soft transition-all rounded-full font-montserrat text-sm tracking-wide"
+              className="px-8 py-3 border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary-light transition-all rounded-full font-montserrat text-sm tracking-wide"
             >
               Get in Touch
             </Link>

@@ -25,26 +25,32 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        // Primary (60%) - Beige family
         primary: {
-          DEFAULT: "#6C8EAD", // Muted blue (main)
-          soft: "#8BA3BC",    // Softer blue
-          muted: "#A9B8CB",   // Very soft blue
-          dark: "#4A6F8C",    // Darker blue variant
+          DEFAULT: "#F5F5DC", // Main beige
+          light: "#FFFFF0",   // Lighter beige
+          dark: "#E8E8D0",    // Darker beige
+          muted: "#F0F0E0",   // Muted beige
         },
+        // Secondary (30%) - Blue family
+        secondary: {
+          DEFAULT: "#6C8EAD", // Main blue
+          light: "#8BA3BC",   // Lighter blue
+          dark: "#4A6F8C",    // Darker blue
+          muted: "#A9B8CB",   // Muted blue
+        },
+        // Accent (10%) - Deep navy & highlights
         accent: {
           DEFAULT: "#1E3A8A", // Deep navy
-          soft: "#2B4A9F",    // Softer navy
-          muted: "#385AB4",   // Brighter navy
+          light: "#2B4A9F",   // Lighter navy
+          dark: "#152C6B",    // Darker navy
+          contrast: "#FFB74D", // Orange accent for special highlights
         },
-        cream: {
-          DEFAULT: "#F5F5DC", // Classic beige
-          soft: "#FEF7CD",    // Soft yellow tint
-          warm: "#FDE1D3",    // Soft peach
-        },
+        // Additional colors for text and other elements
         neutral: {
-          DEFAULT: "#8E9196", // Neutral gray
-          dark: "#333333",    // Dark gray for text
-          light: "#F4F4F6",   // Light gray for backgrounds
+          DEFAULT: "#8E9196",
+          dark: "#333333",
+          light: "#F4F4F6",
         }
       },
       fontFamily: {
