@@ -1,3 +1,4 @@
+
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
@@ -42,17 +43,17 @@ const FunFacts = () => {
   ];
 
   return (
-    <div className="bg-cream min-h-screen">
+    <div className="bg-primary min-h-screen">
       <Navigation />
       <main className="container mx-auto px-6 py-20">
-        <h1 className="font-playfair text-4xl md:text-5xl text-primary text-center mb-12">
+        <h1 className="font-playfair text-4xl md:text-5xl text-secondary text-center mb-12">
           Fun Facts About Me
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {facts.map((fact, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up"
+              className="bg-primary-light rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <img
@@ -61,8 +62,8 @@ const FunFacts = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <h3 className="font-montserrat text-xl text-primary mb-2">{fact.title}</h3>
-                <p className="text-primary-muted">{fact.description}</p>
+                <h3 className="font-montserrat text-xl text-secondary-dark mb-2">{fact.title}</h3>
+                <p className="text-neutral-dark">{fact.description}</p>
               </div>
             </div>
           ))}
