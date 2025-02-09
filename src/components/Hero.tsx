@@ -25,7 +25,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-block font-montserrat text-primary mb-4 tracking-wide"
+            className="inline-block font-montserrat text-primary-dark mb-4 tracking-wide"
           >
             CURIOUS MIND, ADAPTIVE SPIRIT
           </motion.span>
@@ -41,7 +41,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="font-inter text-primary-muted text-lg md:text-xl mb-8 leading-relaxed"
+            className="font-inter text-neutral-dark text-lg md:text-xl mb-8 leading-relaxed"
           >
             Hi, I'm a business IT student at Corvinus University with a passion for teaching,
             technology, and connecting with people. Let's explore new ideas together!
@@ -54,13 +54,13 @@ const Hero = () => {
           >
             <Link
               to="/about"
-              className="px-8 py-3 bg-primary text-cream rounded-full font-montserrat text-sm tracking-wide hover:bg-primary-soft transition-colors"
+              className="px-8 py-3 bg-primary text-cream hover:bg-primary-soft transition-colors rounded-full font-montserrat text-sm tracking-wide"
             >
               Learn More About Me
             </Link>
             <Link
               to="/contact"
-              className="px-8 py-3 border border-primary text-primary rounded-full font-montserrat text-sm tracking-wide hover:bg-primary hover:text-cream transition-all"
+              className="px-8 py-3 border border-primary text-primary hover:bg-primary hover:text-cream-soft transition-all rounded-full font-montserrat text-sm tracking-wide"
             >
               Get in Touch
             </Link>
