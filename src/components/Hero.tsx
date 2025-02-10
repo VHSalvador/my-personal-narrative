@@ -14,7 +14,7 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-primary px-6">
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-24 md:mt-0">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
