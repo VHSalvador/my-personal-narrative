@@ -46,7 +46,7 @@ const FunFacts = () => {
     <div className="bg-primary min-h-screen">
       <Navigation />
       <main className="container mx-auto px-6 py-20">
-        <h1 className="font-playfair text-4xl md:text-5xl text-secondary text-center mb-12">
+        <h1 className="font-playfair text-4xl md:text-5xl text-secondary text-center mb-12 mt-16 md:mt-0">
           Fun Facts About Me
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
