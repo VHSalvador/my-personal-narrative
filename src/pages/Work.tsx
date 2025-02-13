@@ -1,4 +1,3 @@
-
 import { BookOpen, BrainCircuit, Code, Laptop, Sword } from "lucide-react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -69,31 +68,6 @@ const Work = () => {
                 </ul>
               </div>
             ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Work Experience Section */}
-      <section className="bg-primary-light py-16">
-        <div className="container mx-auto max-w-6xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="space-y-12"
-          >
-            <h2 className="font-playfair text-3xl text-secondary text-center mb-12">Work Experience</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {workExperience.map((work, index) => (
-                <div key={index} className="bg-primary p-6 rounded-lg shadow-sm space-y-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                    {work.icon}
-                  </div>
-                  <h3 className="font-montserrat text-lg text-secondary-dark">{work.title}</h3>
-                  <p className="text-neutral-dark">{work.description}</p>
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </section>
