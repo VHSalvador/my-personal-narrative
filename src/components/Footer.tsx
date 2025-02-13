@@ -12,6 +12,7 @@ const Footer = () => {
             <nav className="flex flex-col space-y-2">
               <Link to="/" className="text-primary-muted hover:text-primary-light transition-colors">Home</Link>
               <Link to="/about" className="text-primary-muted hover:text-primary-light transition-colors">About</Link>
+              <Link to="/work" className="text-primary-muted hover:text-primary-light transition-colors">Work</Link>
               <Link to="/fun-facts" className="text-primary-muted hover:text-primary-light transition-colors">Fun Facts</Link>
               <Link to="/contact" className="text-primary-muted hover:text-primary-light transition-colors">Contact</Link>
             </nav>
