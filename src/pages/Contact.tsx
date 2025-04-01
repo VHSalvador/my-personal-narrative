@@ -17,7 +17,7 @@ const Contact = () => {
           duration: 0.5
         }} className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative aspect-square rounded-2xl overflow-hidden">
-              <img alt="Profile" className="w-full h-full object-cover" src="/lovable-uploads/4184ae2e-ba7e-48c4-980c-add4e9f3cfa3.jpg" />
+              <img alt="Profile" src="/lovable-uploads/4184ae2e-ba7e-48c4-980c-add4e9f3cfa3.jpg" className="w-full h-full object-cover" />
             </div>
             
             <div className="space-y-6">
