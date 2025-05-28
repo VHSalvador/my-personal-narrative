@@ -44,12 +44,12 @@ export default {
           DEFAULT: "#1E3A8A", // Deep navy
           light: "#2B4A9F",   // Lighter navy
           dark: "#152C6B",    // Darker navy
-          contrast: "#FFB74D", // Orange accent for special highlights
+          contrast: "#FF8A50", // Improved orange accent for better contrast
         },
-        // Additional colors for text and other elements
+        // Improved neutral colors for better contrast
         neutral: {
           DEFAULT: "#8E9196",
-          dark: "#333333",
+          dark: "#2D3748",    // Darker for better readability
           light: "#F4F4F6",
         }
       },
@@ -57,6 +57,10 @@ export default {
         playfair: ["Playfair Display", "serif"],
         inter: ["Inter", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
+      },
+      boxShadow: {
+        '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
+        'hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
       },
       keyframes: {
         "fade-up": {
@@ -77,10 +81,32 @@ export default {
             opacity: "1",
           },
         },
+        "scale-in": {
+          "0%": {
+            opacity: "0",
+            transform: "scale(0.95)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "scale(1)",
+          },
+        },
+        "slide-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(30px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
+        "scale-in": "scale-in 0.4s ease-out",
+        "slide-up": "slide-up 0.6s ease-out",
       },
     },
   },

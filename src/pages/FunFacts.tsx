@@ -1,6 +1,7 @@
 
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import { motion } from "framer-motion";
 
 const FunFacts = () => {
   const facts = [
@@ -46,26 +47,41 @@ const FunFacts = () => {
     <div className="bg-primary min-h-screen">
       <Navigation />
       <main className="container mx-auto px-6 py-20">
-        <h1 className="font-playfair text-4xl md:text-5xl text-secondary text-center mb-12 mt-16 md:mt-0">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-playfair text-4xl md:text-5xl text-secondary text-center mb-12 mt-16 md:mt-0"
+        >
           Fun Facts About Me
-        </h1>
+        </motion.h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {facts.map((fact, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-primary-light rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow animate-fade-up"
-              style={{ animationDelay: `${index * 100}ms` }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group bg-primary-light rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer"
             >
-              <img
-                src={fact.image}
-                alt={fact.alt}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="font-montserrat text-xl text-secondary-dark mb-2">{fact.title}</h3>
-                <p className="text-neutral-dark">{fact.description}</p>
+              <div className="relative overflow-hidden">
+                <img
+                  src={fact.image}
+                  alt={fact.alt}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-            </div>
+              <div className="p-6">
+                <h3 className="font-montserrat text-xl text-secondary-dark mb-2 group-hover:text-accent-contrast transition-colors duration-300">
+                  {fact.title}
+                </h3>
+                <p className="text-neutral-dark group-hover:text-neutral-dark transition-colors duration-300">
+                  {fact.description}
+                </p>
+              </div>
+            </motion.div>
           ))}
         </div>
       </main>
