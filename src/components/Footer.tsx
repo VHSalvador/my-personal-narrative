@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
 
@@ -28,7 +27,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/0af8be71-398f-4452-9520-86d736370300.png" 
                 alt="Salvador Villarroel Logo" 
-                className="h-8 w-auto object-contain"
+                className="h-10 w-auto object-contain"
               />
               <h3 className="font-playfair text-xl text-primary-light">Salvador Villarroel</h3>
             </div>

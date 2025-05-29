@@ -32,7 +32,7 @@ const Navigation = () => {
           <img 
             src="/lovable-uploads/0af8be71-398f-4452-9520-86d736370300.png" 
             alt="Salvador Villarroel Logo" 
-            className="h-8 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
           Salvador Villarroel 
         </Link>
