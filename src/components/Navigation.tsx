@@ -27,8 +27,13 @@ const Navigation = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link
           to="/"
-          className="font-playfair text-2xl text-primary hover:text-accent-contrast transition-colors duration-300"
+          className="flex items-center gap-3 font-playfair text-2xl text-primary hover:text-accent-contrast transition-colors duration-300"
         >
+          <img 
+            src="/lovable-uploads/0af8be71-398f-4452-9520-86d736370300.png" 
+            alt="Salvador Villarroel Logo" 
+            className="h-8 w-auto object-contain"
+          />
           Salvador Villarroel 
         </Link>
 

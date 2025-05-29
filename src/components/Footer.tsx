@@ -24,7 +24,14 @@ const Footer = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
-            <h3 className="font-playfair text-xl text-primary-light">Quick Links</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src="/lovable-uploads/0af8be71-398f-4452-9520-86d736370300.png" 
+                alt="Salvador Villarroel Logo" 
+                className="h-8 w-auto object-contain"
+              />
+              <h3 className="font-playfair text-xl text-primary-light">Salvador Villarroel</h3>
+            </div>
             <nav className="flex flex-col space-y-2">
               <Link to="/about" className="text-primary-muted hover:text-primary-light transition-colors duration-300">About</Link>
               <Link to="/work" className="text-primary-muted hover:text-primary-light transition-colors duration-300">Work</Link>
