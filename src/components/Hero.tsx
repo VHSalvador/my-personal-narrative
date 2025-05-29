@@ -30,7 +30,7 @@ const Hero = () => {
         </Link>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-32 md:pt-0">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-32">
         <motion.div initial={{
         opacity: 0,
         x: -20
