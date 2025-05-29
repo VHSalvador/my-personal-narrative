@@ -46,12 +46,12 @@ const FunFacts = () => {
   return (
     <div className="bg-primary min-h-screen">
       <Navigation />
-      <main className="container mx-auto px-6 py-20">
+      <main className="container mx-auto px-6 pt-32">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-playfair text-4xl md:text-5xl text-secondary text-center mb-12 mt-16 md:mt-0"
+          className="font-playfair text-4xl md:text-5xl text-secondary text-center mb-12"
         >
           Fun Facts About Me
         </motion.h1>

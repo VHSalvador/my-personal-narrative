@@ -2,11 +2,13 @@ import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+
 const Contact = () => {
-  return <>
+  return (
+    <>
       <Navigation />
-      <main className="min-h-screen bg-primary pt-24 px-6">
-        <div className="container mx-auto max-w-4xl my-[20px]">
+      <main className="min-h-screen bg-primary pt-32 px-6">
+        <div className="container mx-auto max-w-4xl">
           <motion.div initial={{
           opacity: 0,
           y: 20
@@ -54,6 +56,8 @@ const Contact = () => {
         </div>
       </main>
       <Footer />
-    </>;
+    </>
+  );
 };
+
 export default Contact;

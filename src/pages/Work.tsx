@@ -9,7 +9,7 @@ const Work = () => {
       <Navigation />
       
       {/* Header Section */}
-      <header className="pt-24 px-6 container mx-auto max-w-6xl">
+      <header className="pt-32 px-6 container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -2,30 +2,35 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Phone, Mail } from "lucide-react";
+
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
   if (!mounted) return null;
-  return <section className="min-h-screen flex items-center justify-center bg-primary px-6 relative">
+
+  return (
+    <section className="min-h-screen flex items-center justify-center bg-primary px-6 relative">
       {/* Mobile Floating Action Button */}
-      <motion.div initial={{
-      opacity: 0,
-      scale: 0
-    }} animate={{
-      opacity: 1,
-      scale: 1
-    }} transition={{
-      duration: 0.5,
-      delay: 1
-    }} className="fixed bottom-6 right-6 z-40 md:hidden">
-        <Link to="/contact" className="flex items-center justify-center w-14 h-14 bg-accent hover:bg-accent-light rounded-full shadow-lg transition-all duration-300 hover:scale-110" aria-label="Contact me">
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 1 }}
+        className="fixed bottom-6 right-6 z-40 md:hidden"
+      >
+        <Link
+          to="/contact"
+          className="flex items-center justify-center w-14 h-14 bg-accent hover:bg-accent-light rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+          aria-label="Contact me"
+        >
           <Phone className="w-6 h-6 text-white" />
         </Link>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-24 md:mt-0">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-32 md:pt-0">
         <motion.div initial={{
         opacity: 0,
         x: -20
@@ -128,6 +133,8 @@ const Hero = () => {
           <img src="/lovable-uploads/1e258842-fe10-4205-9b6e-0fe8d867e624.png" alt="Salvador Villarroel - Business IT Student and Educator" className="w-full h-full object-cover rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300" loading="lazy" />
         </motion.div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
