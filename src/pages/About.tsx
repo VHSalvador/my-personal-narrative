@@ -1,3 +1,4 @@
+
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -120,7 +121,7 @@ const About = () => {
           }} transition={{
             duration: 0.5,
             delay: 0.4
-          }} className="space-y-6 pt-12">
+          }} className="space-y-6 pt-12 pb-20">
               <h2 className="font-playfair text-3xl md:text-4xl text-secondary">
                 Passions & Interests
               </h2>
