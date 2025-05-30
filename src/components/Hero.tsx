@@ -8,7 +8,7 @@ const Hero = () => {
     setMounted(true);
   }, []);
   if (!mounted) return null;
-  return <section className="min-h-screen flex items-center justify-center bg-primary px-6 relative">
+  return <section className="min-h-screen flex items-center justify-center bg-primary px-6 relative my-0 py-[40px]">
       {/* Mobile Floating Action Button */}
       <motion.div initial={{
       opacity: 0,
