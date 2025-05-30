@@ -65,17 +65,34 @@ const Navigation = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-secondary/98 backdrop-blur-md md:hidden py-4 shadow-xl border-t border-primary/10">
+          <div className="absolute top-full left-0 right-0 bg-primary/98 backdrop-blur-md md:hidden py-4 shadow-xl border-t border-secondary/20">
             <div className="flex flex-col space-y-4 px-6">
-              <NavLink to="/about">About</NavLink>
-              <NavLink to="/work">Work</NavLink>
-              <NavLink to="/fun-facts" className="flex items-center gap-2">
+              <NavLink 
+                to="/about" 
+                className="text-secondary-dark hover:text-accent-contrast"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </NavLink>
+              <NavLink 
+                to="/work" 
+                className="text-secondary-dark hover:text-accent-contrast"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Work
+              </NavLink>
+              <NavLink 
+                to="/fun-facts" 
+                className="flex items-center gap-2 text-secondary-dark hover:text-accent-contrast"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <Smile className="w-4 h-4" />
                 Fun Facts
               </NavLink>
               <Link
                 to="/contact"
                 className="px-6 py-2 bg-accent hover:bg-accent-light text-white rounded-full font-montserrat text-sm tracking-wide transition-all duration-300 text-center"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
@@ -87,9 +104,20 @@ const Navigation = () => {
   );
 };
 
-const NavLink = ({ to, children, className = "" }: { to: string; children: React.ReactNode; className?: string }) => (
+const NavLink = ({ 
+  to, 
+  children, 
+  className = "", 
+  onClick 
+}: { 
+  to: string; 
+  children: React.ReactNode; 
+  className?: string; 
+  onClick?: () => void; 
+}) => (
   <Link
     to={to}
+    onClick={onClick}
     className={`font-montserrat text-sm text-primary hover:text-accent-contrast transition-colors duration-300 relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-accent-contrast after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left ${className}`}
   >
     {children}
