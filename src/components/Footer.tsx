@@ -1,9 +1,10 @@
+
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary border-t border-primary/10 mt-20">
+    <footer className="bg-secondary border-t border-primary/10">
       <div className="container mx-auto px-6 py-12">
         {/* Strong CTA Section */}
         <div className="text-center mb-12 pb-8 border-b border-primary/10">
@@ -70,7 +71,7 @@ const Footer = () => {
           </div>
           
           <div className="space-y-4">
-            <h3 className="font-playfair text-xl text-primary-light">Impact</h3>
+            <h3 className="font-playfair text-xl text-primary-light">Connect</h3>
             <div className="space-y-2 text-primary-muted">
               <p className="text-sm">200+ Students Coached</p>
               <p className="text-sm">6,000+ Community Members</p>
