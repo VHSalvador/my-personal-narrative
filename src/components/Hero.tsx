@@ -2,30 +2,25 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Phone, Mail } from "lucide-react";
-
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
     setMounted(true);
   }, []);
-
   if (!mounted) return null;
-
-  return (
-    <section className="min-h-screen flex items-center justify-center bg-primary px-6 relative">
+  return <section className="min-h-screen flex items-center justify-center bg-primary px-6 relative">
       {/* Mobile Floating Action Button */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 1 }}
-        className="fixed bottom-6 right-6 z-40 md:hidden"
-      >
-        <Link
-          to="/contact"
-          className="flex items-center justify-center w-14 h-14 bg-accent hover:bg-accent-light rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-          aria-label="Contact me"
-        >
+      <motion.div initial={{
+      opacity: 0,
+      scale: 0
+    }} animate={{
+      opacity: 1,
+      scale: 1
+    }} transition={{
+      duration: 0.5,
+      delay: 1
+    }} className="fixed bottom-6 right-6 z-40 md:hidden">
+        <Link to="/contact" className="flex items-center justify-center w-14 h-14 bg-accent hover:bg-accent-light rounded-full shadow-lg transition-all duration-300 hover:scale-110" aria-label="Contact me">
           <Phone className="w-6 h-6 text-white" />
         </Link>
       </motion.div>
@@ -110,7 +105,7 @@ const Hero = () => {
         }} transition={{
           duration: 0.5,
           delay: 0.8
-        }} className="bg-primary-light p-6 rounded-lg border-l-4 border-accent-contrast">
+        }} className="bg-primary-light p-6 rounded-lg border-l-4 border-accent-contrast my-[30px]">
             <p className="text-neutral-dark italic text-sm mb-2">
               "Salvador turned my fear of math into confidence in just two weeks. His teaching style makes everything click!"
             </p>
@@ -133,8 +128,6 @@ const Hero = () => {
           <img src="/lovable-uploads/1e258842-fe10-4205-9b6e-0fe8d867e624.png" alt="Salvador Villarroel - Business IT Student and Educator" className="w-full h-full object-cover rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300" loading="lazy" />
         </motion.div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
