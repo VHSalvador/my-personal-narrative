@@ -1,14 +1,16 @@
+
 import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import ScheduleCalendar from "../components/ScheduleCalendar";
 
 const Contact = () => {
   return (
     <>
       <Navigation />
-      <main className="min-h-screen bg-primary pt-32 px-6">
-        <div className="container mx-auto max-w-4xl">
+      <main className="min-h-screen bg-primary pt-32 px-6 pb-20">
+        <div className="container mx-auto max-w-6xl">
           <motion.div initial={{
           opacity: 0,
           y: 20
@@ -17,7 +19,7 @@ const Contact = () => {
           y: 0
         }} transition={{
           duration: 0.5
-        }} className="grid md:grid-cols-2 gap-8 items-center">
+        }} className="grid md:grid-cols-2 gap-12 items-start mb-16">
             <div className="relative aspect-square rounded-2xl overflow-hidden">
               <img alt="Profile" src="/lovable-uploads/4184ae2e-ba7e-48c4-980c-add4e9f3cfa3.jpg" className="w-full h-full object-cover" />
             </div>
@@ -52,6 +54,15 @@ const Contact = () => {
                 </a>
               </div>
             </div>
+          </motion.div>
+
+          {/* Schedule Calendar Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <ScheduleCalendar />
           </motion.div>
         </div>
       </main>
