@@ -1,10 +1,7 @@
-
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-secondary border-t border-primary/10">
+  return <footer className="bg-secondary border-t border-primary/10">
       <div className="container mx-auto px-6 py-12">
         {/* Strong CTA Section */}
         <div className="text-center mb-12 pb-8 border-b border-primary/10">
@@ -14,10 +11,7 @@ const Footer = () => {
           <p className="text-primary-muted mb-6 max-w-md mx-auto">
             Whether you need tutoring, community building, or technical solutions, I'm here to help you succeed.
           </p>
-          <Link
-            to="/contact"
-            className="inline-block px-8 py-3 bg-accent hover:bg-accent-light text-white rounded-full font-montserrat text-sm tracking-wide transition-all duration-300 hover:scale-105 transform shadow-lg"
-          >
+          <Link to="/contact" className="inline-block px-8 py-3 bg-accent hover:bg-accent-light text-white rounded-full font-montserrat text-sm tracking-wide transition-all duration-300 hover:scale-105 transform shadow-lg">
             Schedule a 15-min Call
           </Link>
         </div>
@@ -25,11 +19,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
             <div className="flex items-center gap-3 mb-4">
-              <img 
-                src="/lovable-uploads/0af8be71-398f-4452-9520-86d736370300.png" 
-                alt="Salvador Villarroel Logo" 
-                className="h-10 w-auto object-contain"
-              />
+              <img src="/lovable-uploads/0af8be71-398f-4452-9520-86d736370300.png" alt="Salvador Villarroel Logo" className="h-10 w-auto object-contain" />
               <h3 className="font-playfair text-xl text-primary-light">Salvador Villarroel</h3>
             </div>
             <nav className="flex flex-col space-y-2">
@@ -42,29 +32,13 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-playfair text-xl text-primary-light">Connect</h3>
             <div className="flex space-x-4">
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform"
-                aria-label="GitHub Profile"
-              >
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform" aria-label="GitHub Profile">
                 <Github size={24} />
               </a>
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform"
-                aria-label="LinkedIn Profile"
-              >
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform" aria-label="LinkedIn Profile">
                 <Linkedin size={24} />
               </a>
-              <a 
-                href="mailto:contact@example.com" 
-                className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform"
-                aria-label="Email Contact"
-              >
+              <a href="mailto:contact@example.com" className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform" aria-label="Email Contact">
                 <Mail size={24} />
               </a>
             </div>
@@ -73,7 +47,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-playfair text-xl text-primary-light">Connect</h3>
             <div className="space-y-2 text-primary-muted">
-              <p className="text-sm">200+ Students Coached</p>
+              <p className="text-sm">10+ Students Coached</p>
               <p className="text-sm">6,000+ Community Members</p>
               <p className="text-sm italic">"Challenges are opportunities in disguise."</p>
             </div>
@@ -84,8 +58,6 @@ const Footer = () => {
           <p>&copy; {new Date().getFullYear()} Salvador Villarroel. All rights reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
