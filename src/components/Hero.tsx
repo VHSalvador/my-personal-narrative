@@ -106,12 +106,8 @@ const Hero = () => {
           duration: 0.5,
           delay: 0.8
         }} className="bg-primary-light p-6 rounded-lg border-l-4 border-accent-contrast my-[80px]">
-            <p className="text-neutral-dark italic text-sm mb-2">
-              "Salvador turned my fear of math into confidence in just two weeks. His teaching style makes everything click!"
-            </p>
-            <p className="text-secondary-dark font-montserrat text-sm">
-              — Anna K., High School Student
-            </p>
+            <p className="text-neutral-dark italic text-sm mb-2">&quot;Salvador turned my fear of math into confidence during  the teaching sessions. His teaching style makes everything click!&quot;</p>
+            <p className="text-secondary-dark font-montserrat text-sm">— Tomi, High School Student</p>
           </motion.div>
         </motion.div>
         
