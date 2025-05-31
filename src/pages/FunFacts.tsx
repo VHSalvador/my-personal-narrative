@@ -1,4 +1,3 @@
-
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
@@ -46,7 +45,7 @@ const FunFacts = () => {
   return (
     <div className="bg-primary min-h-screen">
       <Navigation />
-      <main className="container mx-auto px-6 pt-32">
+      <main className="container mx-auto px-6 pt-32 pb-20">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
