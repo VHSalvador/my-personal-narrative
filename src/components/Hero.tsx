@@ -2,13 +2,18 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Phone, Mail } from "lucide-react";
+
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
   if (!mounted) return null;
-  return <section className="min-h-screen flex items-center justify-center bg-primary px-6 relative my-0 py-[40px]">
+
+  return (
+    <section className="min-h-screen flex items-center justify-center bg-primary px-6 relative my-0 py-[40px]">
       {/* Mobile Floating Action Button */}
       <motion.div initial={{
       opacity: 0,
@@ -26,15 +31,12 @@ const Hero = () => {
       </motion.div>
 
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-32">
-        <motion.div initial={{
-        opacity: 0,
-        x: -20
-      }} animate={{
-        opacity: 1,
-        x: 0
-      }} transition={{
-        duration: 0.5
-      }} className="text-left">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-left"
+        >
           <motion.span initial={{
           opacity: 0,
           y: 20
@@ -62,18 +64,14 @@ const Hero = () => {
             complex tech concepts through teaching, community, and hands-on tools
           </motion.h1>
           
-          <motion.p initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.5,
-          delay: 0.4
-        }} className="font-inter text-neutral-dark text-lg md:text-xl mb-8 leading-relaxed">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="font-inter text-neutral-dark text-lg md:text-xl mb-8 leading-relaxed"
+          >
             On my first day teaching chess, I realized that breakthrough moments happen when complex ideas become simple. 
-            As a business IT student at Corvinus University with <strong>200+ students coached</strong> and a <strong>6,000+ member community</strong>, 
+            As a business IT student at Corvinus University with <strong>10+ students coached</strong> and a <strong>6,000+ member community</strong>, 
             I turn confusion into confidence through technology and connection.
           </motion.p>
           
@@ -111,19 +109,17 @@ const Hero = () => {
           </motion.div>
         </motion.div>
         
-        <motion.div initial={{
-        opacity: 0,
-        x: 20
-      }} animate={{
-        opacity: 1,
-        x: 0
-      }} transition={{
-        duration: 0.5,
-        delay: 0.3
-      }} className="relative aspect-[3/4] w-full max-w-md mx-auto">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="relative aspect-[3/4] w-full max-w-md mx-auto"
+        >
           <img src="/lovable-uploads/1e258842-fe10-4205-9b6e-0fe8d867e624.png" alt="Salvador Villarroel - Business IT Student and Educator" className="w-full h-full object-cover rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-300" loading="lazy" />
         </motion.div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
