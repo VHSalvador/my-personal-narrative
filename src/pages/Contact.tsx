@@ -33,22 +33,22 @@ const Contact = () => {
               </p>
               
               <div className="space-y-4">
-                <a href="tel:+1234567890" className="flex items-center gap-3 text-secondary hover:text-secondary-dark transition-colors">
+                <a href="tel:+36308601718" className="flex items-center gap-3 text-secondary hover:text-secondary-dark transition-colors">
                   <Phone className="w-5 h-5" />
-                  <span>+1 (234) 567-890</span>
+                  <span>+36 30 860 1718</span>
                 </a>
                 
-                <a href="mailto:your.email@example.com" className="flex items-center gap-3 text-secondary hover:text-secondary-dark transition-colors">
+                <a href="mailto:salvador.vh05@gmail.com" className="flex items-center gap-3 text-secondary hover:text-secondary-dark transition-colors">
                   <Mail className="w-5 h-5" />
-                  <span>your.email@example.com</span>
+                  <span>salvador.vh05@gmail.com</span>
                 </a>
                 
-                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-secondary hover:text-secondary-dark transition-colors">
+                <a href="https://www.linkedin.com/in/villarroel-hektor-salvador-45080732b/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-secondary hover:text-secondary-dark transition-colors">
                   <Linkedin className="w-5 h-5" />
                   <span>LinkedIn Profile</span>
                 </a>
                 
-                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-secondary hover:text-secondary-dark transition-colors">
+                <a href="https://github.com/VHSalvador" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-secondary hover:text-secondary-dark transition-colors">
                   <Github className="w-5 h-5" />
                   <span>GitHub Profile</span>
                 </a>

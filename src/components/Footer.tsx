@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
 const Footer = () => {
@@ -32,13 +33,13 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-playfair text-xl text-primary-light">Connect</h3>
             <div className="flex space-x-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform" aria-label="GitHub Profile">
+              <a href="https://github.com/VHSalvador" target="_blank" rel="noopener noreferrer" className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform" aria-label="GitHub Profile">
                 <Github size={24} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform" aria-label="LinkedIn Profile">
+              <a href="https://www.linkedin.com/in/villarroel-hektor-salvador-45080732b/" target="_blank" rel="noopener noreferrer" className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform" aria-label="LinkedIn Profile">
                 <Linkedin size={24} />
               </a>
-              <a href="mailto:contact@example.com" className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform" aria-label="Email Contact">
+              <a href="mailto:salvador.vh05@gmail.com" className="text-primary-muted hover:text-primary-light transition-all duration-300 hover:scale-110 transform" aria-label="Email Contact">
                 <Mail size={24} />
               </a>
             </div>
