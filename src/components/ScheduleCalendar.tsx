@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
@@ -50,6 +51,19 @@ const ScheduleCalendar = () => {
         meeting_date: format(selectedDate, "yyyy-MM-dd"),
         meeting_time: selectedTime
       });
+
+      // Check if Supabase is properly configured
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+      if (!supabaseUrl || !supabaseAnonKey) {
+        toast({
+          title: "Configuration Error",
+          description: "Supabase is not configured. Please connect your project to Supabase to enable meeting booking.",
+          variant: "destructive",
+        });
+        return;
+      }
 
       // Save to database
       const { data: meetingData, error: dbError } = await supabase
