@@ -24,17 +24,79 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Validate request method
+    if (req.method !== "POST") {
+      return new Response(
+        JSON.stringify({ error: "Method not allowed" }),
+        {
+          status: 405,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // Check if RESEND_API_KEY is configured
+    if (!Deno.env.get("RESEND_API_KEY")) {
+      console.error("RESEND_API_KEY environment variable is not set");
+      return new Response(
+        JSON.stringify({ error: "Email service not configured" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     const { fullName, email, meetingDate, meetingTime }: MeetingNotificationRequest = await req.json();
 
-    // Format the date for better readability
-    const formattedDate = new Date(meetingDate).toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    // Validate required fields
+    if (!fullName || !email || !meetingDate || !meetingTime) {
+      return new Response(
+        JSON.stringify({ error: "Missing required fields" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email format" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // Parse and format the date for better readability
+    let formattedDate: string;
+    try {
+      const dateObj = new Date(meetingDate + 'T00:00:00.000Z');
+      formattedDate = dateObj.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        timeZone: 'UTC'
+      });
+    } catch (error) {
+      console.error('Date parsing error:', error);
+      formattedDate = meetingDate; // Fallback to original date string
+    }
+
+    console.log("Processing meeting notification:", {
+      fullName,
+      email,
+      meetingDate,
+      meetingTime,
+      formattedDate
     });
 
-    // Send notification email to salvador.vh05@gmail.com
+    // Send notification email to admin
     const adminEmailResponse = await resend.emails.send({
       from: "Meeting Scheduler <onboarding@resend.dev>",
       to: ["salvador.vh05@gmail.com"],
@@ -49,6 +111,7 @@ const handler = async (req: Request): Promise<Response> => {
           <li><strong>Time:</strong> ${meetingTime}</li>
         </ul>
         <p>Please review and confirm this meeting.</p>
+        <p><em>Meeting ID: ${new Date().getTime()}</em></p>
       `,
     });
 
@@ -56,26 +119,37 @@ const handler = async (req: Request): Promise<Response> => {
     const userEmailResponse = await resend.emails.send({
       from: "Meeting Scheduler <onboarding@resend.dev>",
       to: [email],
-      subject: "Meeting Request Approved",
+      subject: "Meeting Request Confirmed",
       html: `
-        <h1>Your Meeting Has Been Approved!</h1>
+        <h1>Your Meeting Has Been Confirmed!</h1>
         <p>Dear ${fullName},</p>
-        <p>Your meeting request has been approved for:</p>
+        <p>Your meeting request has been received and confirmed for:</p>
         <ul>
           <li><strong>Date:</strong> ${formattedDate}</li>
-          <li><strong>Time:</strong> ${meetingTime}</li>
+          <li><strong>Time:</strong> ${meetingTime} (15 minutes)</li>
         </ul>
         <p>We'll send you a Google Meet link closer to the meeting time.</p>
         <p>If you need to reschedule or have any questions, please reply to this email.</p>
         <p>Best regards,<br>The Team</p>
+        <hr>
+        <p><small>This is an automated confirmation. Please keep this email for your records.</small></p>
       `,
     });
 
     console.log("Admin email sent:", adminEmailResponse);
     console.log("User email sent:", userEmailResponse);
 
+    // Check for email sending errors
+    if (adminEmailResponse.error) {
+      console.error("Admin email error:", adminEmailResponse.error);
+    }
+    if (userEmailResponse.error) {
+      console.error("User email error:", userEmailResponse.error);
+    }
+
     return new Response(JSON.stringify({ 
       success: true,
+      message: "Meeting scheduled and notifications sent",
       adminEmailId: adminEmailResponse.data?.id,
       userEmailId: userEmailResponse.data?.id
     }), {
@@ -88,7 +162,10 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in send-meeting-notification function:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: "Internal server error",
+        message: error.message || "Unknown error occurred"
+      }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

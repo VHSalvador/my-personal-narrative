@@ -30,13 +30,55 @@ const ScheduleCalendar = () => {
     "16:00", "16:15", "16:30", "16:45"
   ];
 
+  // Email validation function
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Name validation function
+  const isValidName = (name: string): boolean => {
+    return name.trim().length >= 2;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Enhanced validation
     if (!selectedDate || !selectedTime || !fullName || !email) {
       toast({
-        title: "Error",
+        title: "Missing Information",
         description: "Please fill in all fields and select a date and time.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!isValidName(fullName)) {
+      toast({
+        title: "Invalid Name",
+        description: "Please enter a valid full name (at least 2 characters).",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check if selected date is not in the past
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (selectedDate < today) {
+      toast({
+        title: "Invalid Date",
+        description: "Please select a future date.",
         variant: "destructive",
       });
       return;
@@ -45,30 +87,43 @@ const ScheduleCalendar = () => {
     setIsSubmitting(true);
     
     try {
+      // Format date consistently for database storage (YYYY-MM-DD)
+      const formattedDate = selectedDate.toISOString().split('T')[0];
+      
+      console.log("Attempting to save meeting:", {
+        full_name: fullName.trim(),
+        email: email.toLowerCase().trim(),
+        meeting_date: formattedDate,
+        meeting_time: selectedTime
+      });
+
       // Save meeting to Supabase
       const { data: meetingData, error: meetingError } = await supabase
         .from('meetings')
         .insert({
-          full_name: fullName,
-          email: email,
-          meeting_date: selectedDate.toISOString().split('T')[0],
+          full_name: fullName.trim(),
+          email: email.toLowerCase().trim(),
+          meeting_date: formattedDate,
           meeting_time: selectedTime
         })
         .select()
         .single();
 
       if (meetingError) {
+        console.error('Meeting save error:', meetingError);
         throw new Error(`Failed to save meeting: ${meetingError.message}`);
       }
+
+      console.log("Meeting saved successfully:", meetingData);
 
       // Send email notifications
       const { data: emailData, error: emailError } = await supabase.functions.invoke(
         'send-meeting-notification',
         {
           body: {
-            fullName,
-            email,
-            meetingDate: selectedDate.toISOString().split('T')[0],
+            fullName: fullName.trim(),
+            email: email.toLowerCase().trim(),
+            meetingDate: formattedDate,
             meetingTime: selectedTime
           }
         }
@@ -76,12 +131,13 @@ const ScheduleCalendar = () => {
 
       if (emailError) {
         console.error('Email notification error:', emailError);
-        // Don't throw error here, meeting was saved successfully
+        // Meeting was saved successfully, but email failed
         toast({
           title: "Meeting Scheduled!",
-          description: `Your meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. Note: Email notifications may have failed.`,
+          description: `Your meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. Note: Email notifications may have failed to send.`,
         });
       } else {
+        console.log("Email notifications sent successfully:", emailData);
         toast({
           title: "Meeting Scheduled!",
           description: `Your meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. You'll receive a confirmation email shortly.`,
@@ -123,7 +179,11 @@ const ScheduleCalendar = () => {
                 mode="single"
                 selected={selectedDate}
                 onSelect={setSelectedDate}
-                disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
+                disabled={(date) => {
+                  const today = new Date();
+                  today.setHours(0, 0, 0, 0);
+                  return date < today || date.getDay() === 0 || date.getDay() === 6;
+                }}
                 className="rounded-md border"
               />
             </div>
@@ -139,6 +199,8 @@ const ScheduleCalendar = () => {
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Enter your full name"
                   required
+                  minLength={2}
+                  maxLength={100}
                 />
               </div>
 
@@ -160,7 +222,7 @@ const ScheduleCalendar = () => {
                     <Clock className="w-4 h-4" />
                     Available Times (15 minutes)
                   </Label>
-                  <div className="grid grid-cols-2 gap-2 mt-2 max-h-60 overflow-y-auto">
+                  <div className="grid grid-cols-2 gap-2 mt-2 max-h-60 overflow-y-auto p-2 border rounded-md">
                     {timeSlots.map((time) => (
                       <Button
                         key={time}
@@ -168,7 +230,7 @@ const ScheduleCalendar = () => {
                         variant={selectedTime === time ? "default" : "outline"}
                         size="sm"
                         onClick={() => setSelectedTime(time)}
-                        className="justify-start"
+                        className="justify-start text-sm"
                       >
                         {time}
                       </Button>
