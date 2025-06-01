@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { CalendarIcon, Clock } from "lucide-react";
 import { format } from "date-fns";
+import { supabase } from "@/integrations/supabase/client";
 
 const ScheduleCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date>();
@@ -44,28 +45,59 @@ const ScheduleCalendar = () => {
     setIsSubmitting(true);
     
     try {
-      // Here you would typically send the data to your backend
-      console.log("Scheduling call:", {
-        date: selectedDate,
-        time: selectedTime,
-        fullName,
-        email
-      });
-      
-      toast({
-        title: "Call Scheduled!",
-        description: `Your 15-minute Google Meet call has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}.`,
-      });
+      // Save meeting to Supabase
+      const { data: meetingData, error: meetingError } = await supabase
+        .from('meetings')
+        .insert({
+          full_name: fullName,
+          email: email,
+          meeting_date: selectedDate.toISOString().split('T')[0],
+          meeting_time: selectedTime
+        })
+        .select()
+        .single();
+
+      if (meetingError) {
+        throw new Error(`Failed to save meeting: ${meetingError.message}`);
+      }
+
+      // Send email notifications
+      const { data: emailData, error: emailError } = await supabase.functions.invoke(
+        'send-meeting-notification',
+        {
+          body: {
+            fullName,
+            email,
+            meetingDate: selectedDate.toISOString().split('T')[0],
+            meetingTime: selectedTime
+          }
+        }
+      );
+
+      if (emailError) {
+        console.error('Email notification error:', emailError);
+        // Don't throw error here, meeting was saved successfully
+        toast({
+          title: "Meeting Scheduled!",
+          description: `Your meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. Note: Email notifications may have failed.`,
+        });
+      } else {
+        toast({
+          title: "Meeting Scheduled!",
+          description: `Your meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. You'll receive a confirmation email shortly.`,
+        });
+      }
       
       // Reset form
       setSelectedDate(undefined);
       setSelectedTime("");
       setFullName("");
       setEmail("");
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Error scheduling meeting:', error);
       toast({
         title: "Error",
-        description: "Failed to schedule the call. Please try again.",
+        description: error.message || "Failed to schedule the meeting. Please try again.",
         variant: "destructive",
       });
     } finally {
