@@ -8,7 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { CalendarIcon, Clock } from "lucide-react";
 import { format } from "date-fns";
-import { supabase } from "@/integrations/supabase/client";
 
 const ScheduleCalendar = () => {
   const [selectedDate, setSelectedDate] = useState<Date>();
@@ -45,71 +44,18 @@ const ScheduleCalendar = () => {
     setIsSubmitting(true);
     
     try {
-      console.log("Submitting meeting data:", {
-        name: fullName,
-        email,
-        meeting_date: format(selectedDate, "yyyy-MM-dd"),
-        meeting_time: selectedTime
+      // Here you would typically send the data to your backend
+      console.log("Scheduling call:", {
+        date: selectedDate,
+        time: selectedTime,
+        fullName,
+        email
       });
-
-      // Check if Supabase is properly configured
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-      if (!supabaseUrl || !supabaseAnonKey) {
-        toast({
-          title: "Configuration Error",
-          description: "Supabase is not configured. Please connect your project to Supabase to enable meeting booking.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      // Save to database
-      const { data: meetingData, error: dbError } = await supabase
-        .from('meetings')
-        .insert({
-          name: fullName,
-          email,
-          meeting_date: format(selectedDate, "yyyy-MM-dd"),
-          meeting_time: selectedTime,
-          status: 'confirmed'
-        })
-        .select()
-        .single();
-
-      if (dbError) {
-        console.error("Database error:", dbError);
-        throw new Error("Failed to save meeting to database");
-      }
-
-      console.log("Meeting saved to database:", meetingData);
-
-      // Send email notifications
-      const { data: emailData, error: emailError } = await supabase.functions.invoke('send-meeting-notification', {
-        body: {
-          name: fullName,
-          email,
-          date: format(selectedDate, "yyyy-MM-dd"),
-          time: selectedTime
-        }
+      
+      toast({
+        title: "Call Scheduled!",
+        description: `Your 15-minute Google Meet call has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}.`,
       });
-
-      if (emailError) {
-        console.error("Email error:", emailError);
-        // Don't throw error here - meeting is saved, just email failed
-        toast({
-          title: "Meeting Scheduled",
-          description: `Your meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. Email notifications may have failed to send.`,
-          variant: "default",
-        });
-      } else {
-        console.log("Email notifications sent:", emailData);
-        toast({
-          title: "Meeting Scheduled Successfully!",
-          description: `Your 15-minute meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. Check your email for confirmation and calendar invite.`,
-        });
-      }
       
       // Reset form
       setSelectedDate(undefined);
@@ -117,10 +63,9 @@ const ScheduleCalendar = () => {
       setFullName("");
       setEmail("");
     } catch (error) {
-      console.error("Error scheduling meeting:", error);
       toast({
         title: "Error",
-        description: "Failed to schedule the meeting. Please try again.",
+        description: "Failed to schedule the call. Please try again.",
         variant: "destructive",
       });
     } finally {
