@@ -33,12 +33,13 @@ const ScheduleCalendar = () => {
   // Email validation function
   const isValidEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return emailRegex.test(email.trim());
   };
 
-  // Name validation function
+  // Name validation function - only letters, spaces, minimum 2 characters
   const isValidName = (name: string): boolean => {
-    return name.trim().length >= 2;
+    const nameRegex = /^[a-zA-Z\s]{2,}$/;
+    return nameRegex.test(name.trim());
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -66,7 +67,7 @@ const ScheduleCalendar = () => {
     if (!isValidName(fullName)) {
       toast({
         title: "Invalid Name",
-        description: "Please enter a valid full name (at least 2 characters).",
+        description: "Name must contain only letters and spaces, minimum 2 characters.",
         variant: "destructive",
       });
       return;
@@ -97,26 +98,8 @@ const ScheduleCalendar = () => {
         meeting_time: selectedTime
       });
 
-      // Save meeting to Supabase
-      const { data: meetingData, error: meetingError } = await supabase
-        .from('meetings')
-        .insert({
-          full_name: fullName.trim(),
-          email: email.toLowerCase().trim(),
-          meeting_date: formattedDate,
-          meeting_time: selectedTime
-        })
-        .select()
-        .single();
-
-      if (meetingError) {
-        console.error('Meeting save error:', meetingError);
-        throw new Error(`Failed to save meeting: ${meetingError.message}`);
-      }
-
-      console.log("Meeting saved successfully:", meetingData);
-
-      // Send email notifications
+      // Use the Edge Function to handle both database save and email notifications
+      // This bypasses RLS by using the service role in the Edge Function
       const { data: emailData, error: emailError } = await supabase.functions.invoke(
         'send-meeting-notification',
         {
@@ -130,19 +113,16 @@ const ScheduleCalendar = () => {
       );
 
       if (emailError) {
-        console.error('Email notification error:', emailError);
-        // Meeting was saved successfully, but email failed
-        toast({
-          title: "Meeting Scheduled!",
-          description: `Your meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. Note: Email notifications may have failed to send.`,
-        });
-      } else {
-        console.log("Email notifications sent successfully:", emailData);
-        toast({
-          title: "Meeting Scheduled!",
-          description: `Your meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. You'll receive a confirmation email shortly.`,
-        });
+        console.error('Meeting scheduling error:', emailError);
+        throw new Error(`Failed to schedule meeting: ${emailError.message}`);
       }
+
+      console.log("Meeting scheduled successfully:", emailData);
+      
+      toast({
+        title: "Meeting Scheduled!",
+        description: `Your meeting has been scheduled for ${format(selectedDate, "PPP")} at ${selectedTime}. You'll receive a confirmation email shortly.`,
+      });
       
       // Reset form
       setSelectedDate(undefined);
@@ -201,6 +181,8 @@ const ScheduleCalendar = () => {
                   required
                   minLength={2}
                   maxLength={100}
+                  pattern="[a-zA-Z\s]{2,}"
+                  title="Name must contain only letters and spaces, minimum 2 characters"
                 />
               </div>
 
@@ -213,6 +195,8 @@ const ScheduleCalendar = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
                   required
+                  pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                  title="Please enter a valid email address"
                 />
               </div>
 

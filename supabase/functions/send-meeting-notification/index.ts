@@ -1,6 +1,7 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -72,6 +73,62 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Validate name (at least 2 characters, only letters and spaces)
+    const nameRegex = /^[a-zA-Z\s]{2,}$/;
+    if (!nameRegex.test(fullName.trim())) {
+      return new Response(
+        JSON.stringify({ error: "Invalid name format. Name must contain only letters and spaces, minimum 2 characters." }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // Create Supabase client with service role key to bypass RLS
+    const supabaseAdmin = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    );
+
+    console.log("Saving meeting to database:", {
+      full_name: fullName.trim(),
+      email: email.toLowerCase().trim(),
+      meeting_date: meetingDate,
+      meeting_time: meetingTime
+    });
+
+    // Save meeting to database using service role to bypass RLS
+    const { data: meetingData, error: meetingError } = await supabaseAdmin
+      .from('meetings')
+      .insert({
+        full_name: fullName.trim(),
+        email: email.toLowerCase().trim(),
+        meeting_date: meetingDate,
+        meeting_time: meetingTime
+      })
+      .select()
+      .single();
+
+    if (meetingError) {
+      console.error('Meeting save error:', meetingError);
+      return new Response(
+        JSON.stringify({ error: `Failed to save meeting: ${meetingError.message}` }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    console.log("Meeting saved successfully:", meetingData);
+
     // Parse and format the date for better readability
     let formattedDate: string;
     try {
@@ -111,7 +168,7 @@ const handler = async (req: Request): Promise<Response> => {
           <li><strong>Time:</strong> ${meetingTime}</li>
         </ul>
         <p>Please review and confirm this meeting.</p>
-        <p><em>Meeting ID: ${new Date().getTime()}</em></p>
+        <p><em>Meeting ID: ${meetingData.id}</em></p>
       `,
     });
 
@@ -150,6 +207,7 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(JSON.stringify({ 
       success: true,
       message: "Meeting scheduled and notifications sent",
+      meeting: meetingData,
       adminEmailId: adminEmailResponse.data?.id,
       userEmailId: userEmailResponse.data?.id
     }), {
