@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,8 @@ const ScheduleCalendar = () => {
   const [fullName, setFullName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [bookedSlots, setBookedSlots] = useState<string[]>([]);
+  const [isLoadingSlots, setIsLoadingSlots] = useState<boolean>(false);
   const { toast } = useToast();
 
   // Generate 15-minute time slots from 9 AM to 5 PM
@@ -29,6 +31,62 @@ const ScheduleCalendar = () => {
     "15:00", "15:15", "15:30", "15:45",
     "16:00", "16:15", "16:30", "16:45"
   ];
+
+  // Fetch booked slots for the selected date
+  const fetchBookedSlots = async (date: Date) => {
+    setIsLoadingSlots(true);
+    try {
+      const formattedDate = date.toISOString().split('T')[0];
+      
+      const { data: meetings, error } = await supabase
+        .from('meetings')
+        .select('meeting_time')
+        .eq('meeting_date', formattedDate);
+
+      if (error) {
+        console.error('Error fetching booked slots:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load available time slots. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Extract time slots and convert to HH:MM format
+      const booked = meetings?.map(meeting => {
+        // meeting_time comes as HH:MM:SS, we need HH:MM
+        return meeting.meeting_time.slice(0, 5);
+      }) || [];
+      
+      setBookedSlots(booked);
+      console.log('Booked slots for', formattedDate, ':', booked);
+    } catch (error) {
+      console.error('Error fetching booked slots:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load available time slots. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoadingSlots(false);
+    }
+  };
+
+  // Effect to fetch booked slots when date changes
+  useEffect(() => {
+    if (selectedDate) {
+      fetchBookedSlots(selectedDate);
+      // Reset selected time when date changes
+      setSelectedTime("");
+    } else {
+      setBookedSlots([]);
+      setSelectedTime("");
+    }
+  }, [selectedDate]);
+
+  // Get available time slots (excluding booked ones)
+  const availableTimeSlots = timeSlots.filter(time => !bookedSlots.includes(time));
 
   // Email validation function
   const isValidEmail = (email: string): boolean => {
@@ -85,6 +143,19 @@ const ScheduleCalendar = () => {
       return;
     }
 
+    // Check if the selected time slot is still available
+    if (bookedSlots.includes(selectedTime)) {
+      toast({
+        title: "Time Slot Unavailable",
+        description: "This time slot has been booked by someone else. Please select another time.",
+        variant: "destructive",
+      });
+      // Refresh booked slots to get the latest data
+      await fetchBookedSlots(selectedDate);
+      setSelectedTime("");
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -99,7 +170,6 @@ const ScheduleCalendar = () => {
       });
 
       // Use the Edge Function to handle both database save and email notifications
-      // This bypasses RLS by using the service role in the Edge Function
       const { data: emailData, error: emailError } = await supabase.functions.invoke(
         'send-meeting-notification',
         {
@@ -129,6 +199,7 @@ const ScheduleCalendar = () => {
       setSelectedTime("");
       setFullName("");
       setEmail("");
+      setBookedSlots([]);
     } catch (error: any) {
       console.error('Error scheduling meeting:', error);
       toast({
@@ -205,21 +276,37 @@ const ScheduleCalendar = () => {
                   <Label className="text-base font-medium flex items-center gap-2">
                     <Clock className="w-4 h-4" />
                     Available Times (15 minutes)
+                    {isLoadingSlots && <span className="text-sm text-gray-500">Loading...</span>}
                   </Label>
-                  <div className="grid grid-cols-2 gap-2 mt-2 max-h-60 overflow-y-auto p-2 border rounded-md">
-                    {timeSlots.map((time) => (
-                      <Button
-                        key={time}
-                        type="button"
-                        variant={selectedTime === time ? "default" : "outline"}
-                        size="sm"
-                        onClick={() => setSelectedTime(time)}
-                        className="justify-start text-sm"
-                      >
-                        {time}
-                      </Button>
-                    ))}
-                  </div>
+                  {isLoadingSlots ? (
+                    <div className="p-4 border rounded-md text-center text-gray-500">
+                      Loading available time slots...
+                    </div>
+                  ) : availableTimeSlots.length === 0 ? (
+                    <div className="p-4 border rounded-md text-center text-gray-500">
+                      No time slots available for this date. Please select another date.
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-2 mt-2 max-h-60 overflow-y-auto p-2 border rounded-md">
+                      {availableTimeSlots.map((time) => (
+                        <Button
+                          key={time}
+                          type="button"
+                          variant={selectedTime === time ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => setSelectedTime(time)}
+                          className="justify-start text-sm"
+                        >
+                          {time}
+                        </Button>
+                      ))}
+                    </div>
+                  )}
+                  {bookedSlots.length > 0 && (
+                    <p className="text-xs text-gray-500 mt-2">
+                      {bookedSlots.length} time slot(s) already booked for this date
+                    </p>
+                  )}
                 </div>
               )}
             </div>
@@ -235,7 +322,7 @@ const ScheduleCalendar = () => {
 
           <Button
             type="submit"
-            disabled={!selectedDate || !selectedTime || !fullName || !email || isSubmitting}
+            disabled={!selectedDate || !selectedTime || !fullName || !email || isSubmitting || isLoadingSlots}
             className="w-full bg-accent hover:bg-accent-light text-primary-light"
           >
             {isSubmitting ? "Scheduling..." : "Schedule Call"}
