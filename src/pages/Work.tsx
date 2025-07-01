@@ -1,4 +1,3 @@
-
 import { BookOpen, BrainCircuit, Code, Laptop, Sword } from "lucide-react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -114,10 +113,9 @@ const skillCategories = [
     title: "Technical Skills",
     icon: <Code className="w-5 h-5 text-accent-terra" />,
     skills: [
+      "Designing automated workflows, with API connections and custom webhooks",
       "Programming: Basics of C# and Python",
       "Business IT knowledge from university studies",
-      "Automation platforms: n8n, Zapier for workflow integration",
-      "API development and webhook implementation",
     ],
   },
   {
