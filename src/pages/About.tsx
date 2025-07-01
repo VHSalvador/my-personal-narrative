@@ -2,6 +2,7 @@
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
+
 const About = () => {
   return <>
       <main className="bg-primary min-h-screen">
@@ -72,7 +73,7 @@ const About = () => {
                   <div className="text-sm text-neutral-dark">Students Coached</div>
                 </div>
                 <div className="text-center p-4 bg-primary-light rounded-lg hover:shadow-md transition-shadow duration-300">
-                  <div className="text-2xl font-bold text-accent-contrast">6,000+</div>
+                  <div className="text-2xl font-bold text-accent-contrast">10,000</div>
                   <div className="text-sm text-neutral-dark">Community Members</div>
                 </div>
                 <div className="text-center p-4 bg-primary-light rounded-lg hover:shadow-md transition-shadow duration-300">
@@ -102,7 +103,7 @@ const About = () => {
                     Community & Entrepreneurship
                   </h3>
                   <p className="text-neutral-dark leading-relaxed">
-                    From growing a perfume enthusiast Facebook group to 6,000+ engaged members to managing online 
+                    From growing a perfume enthusiast Facebook group to 10,000 engaged members to managing online 
                     communities with hundreds of active participants, I've demonstrated my ability to build and 
                     nurture thriving digital spaces. My ventures in e-commerce and service provision have generated 
                     consistent revenue while teaching me valuable business skills.
@@ -167,4 +168,5 @@ const About = () => {
       <Footer />
     </>;
 };
+
 export default About;

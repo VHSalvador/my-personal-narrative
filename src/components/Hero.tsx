@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -59,9 +60,7 @@ const Hero = () => {
           duration: 0.5,
           delay: 0.2
         }} className="font-playfair text-4xl md:text-6xl text-secondary mb-6 leading-tight">
-            I help students and startups{" "}
-            <span className="font-bold text-blue-900">master</span>{" "}
-            complex tech concepts through teaching, community, and hands-on tools
+            <span className="font-bold text-blue-900">I grow, therefore I am.</span>
           </motion.h1>
           
           <motion.p
@@ -71,7 +70,15 @@ const Hero = () => {
             className="font-inter text-neutral-dark text-lg md:text-xl mb-8 leading-relaxed"
           >
             On my first day teaching chess, I realized that breakthrough moments happen when complex ideas become simple. 
-            As a business IT student at Corvinus University with <strong>10+ students coached</strong> and a <strong>6,000+ member community</strong>, 
+            As a business IT student at Corvinus University with <strong>10+ students coached</strong> and a{" "}
+            <a 
+              href="https://www.facebook.com/groups/364356162784165/people/?should_open_welcome_member_composer=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-blue-900 hover:text-blue-700 transition-colors duration-200 underline decoration-2 underline-offset-2"
+            >
+              10,000 member community
+            </a>, 
             I turn confusion into confidence through technology and connection.
           </motion.p>
           
