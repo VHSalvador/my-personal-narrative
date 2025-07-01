@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
+
 const Footer = () => {
   return <footer className="bg-secondary border-t border-primary/10">
       <div className="container mx-auto px-6 py-12">
@@ -49,7 +50,7 @@ const Footer = () => {
             <h3 className="font-playfair text-xl text-primary-light">Connect</h3>
             <div className="space-y-2 text-primary-muted">
               <p className="text-sm">10+ Students Coached</p>
-              <p className="text-sm">6,000+ Community Members</p>
+              <p className="text-sm">10,000 Community Members</p>
               <p className="text-sm italic">"Challenges are opportunities in disguise."</p>
             </div>
           </div>
@@ -61,4 +62,5 @@ const Footer = () => {
       </div>
     </footer>;
 };
+
 export default Footer;

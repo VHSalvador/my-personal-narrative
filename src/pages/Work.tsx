@@ -1,3 +1,4 @@
+
 import { BookOpen, BrainCircuit, Code, Laptop, Sword } from "lucide-react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
@@ -87,6 +88,7 @@ const timelineEvents = [
   { year: "2024", description: "Founded Velora" },
   { year: "2024–Present", description: "Began teaching chess" },
   { year: "2024–Present", description: "Enrolled at Corvinus University of Budapest" },
+  { year: "2025–Present", description: "Started working as an intern in ImprovAI Consulting" },
 ];
 
 const skillCategories = [
@@ -105,7 +107,7 @@ const skillCategories = [
     skills: [
       "Experience in selling rare shoes (business acumen and market knowledge)",
       "Website creation (technical skills in design and development)",
-      "Managing communities (e.g., Facebook perfume group with 6,000+ members)",
+      "Managing communities (e.g., Facebook perfume group with 10,000 members)",
     ],
   },
   {
@@ -114,6 +116,8 @@ const skillCategories = [
     skills: [
       "Programming: Basics of C# and Python",
       "Business IT knowledge from university studies",
+      "Automation platforms: n8n, Zapier for workflow integration",
+      "API development and webhook implementation",
     ],
   },
   {
