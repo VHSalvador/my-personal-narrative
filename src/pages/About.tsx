@@ -2,6 +2,7 @@
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
+
 const About = () => {
   return <>
       <main className="bg-primary min-h-screen">
@@ -33,7 +34,7 @@ const About = () => {
               </div>
 
               <div className="grid md:grid-cols-2 gap-8 items-center">
-                <img src="/lovable-uploads/4184ae2e-ba7e-48c4-980c-add4e9f3cfa3.jpg" alt="Salvador Villarroel - Educator and Tech Enthusiast" className="rounded-lg shadow-lg w-full h-[400px] object-cover hover:shadow-xl transition-shadow duration-300" loading="lazy" />
+                <img src="/lovable-uploads/4184ae2e-ba7e-48c4-980c-add4e9f3cfa3.jpg" alt="Salvador Villarroel - Educator and Tech Enthusiast" className="rounded-lg shadow-lg w-full h-[400px] object-cover object-top hover:shadow-xl transition-shadow duration-300" loading="lazy" />
                 <div className="space-y-4">
                   <p className="text-neutral-dark leading-relaxed">
                     As a 20-year-old business IT student at Corvinus University, I bring together a unique blend of 
@@ -132,9 +133,9 @@ const About = () => {
                     Wall Climbing & Sports
                   </h3>
                   <p className="text-neutral-dark leading-relaxed">
-                    Wall climbing challenges me both **physically** and **mentally**, teaching me the value of **persistence** 
-                    and **strategic thinking**. My background in ice skating and roller skating has instilled a love 
-                    for **dynamic movement** and **continuous improvement**.
+                    Wall climbing challenges me both <strong>physically</strong> and <strong>mentally</strong>, teaching me the value of <strong>persistence</strong> 
+                    and strategic thinking. My background in ice skating and roller skating has instilled a love 
+                    for dynamic movement and <strong>continuous improvement</strong>.
                   </p>
                 </div>
                 <div className="group space-y-4 hover:transform hover:scale-105 transition-all duration-300">
@@ -143,9 +144,9 @@ const About = () => {
                     Technology & AI
                   </h3>
                   <p className="text-neutral-dark leading-relaxed">
-                    I specialize in **building AI agents** and **automated workflows** that help businesses streamline 
-                    their operations. My expertise lies in using **n8n** and **Zapier** to create powerful integrations 
-                    and automations through various **APIs**. I'm also proficient in **SQL**, **Python**, and **C#**, 
+                    I specialize in <strong>building AI agents</strong> and <strong>automated workflows</strong> that help businesses streamline 
+                    their operations. My expertise lies in using <strong>n8n</strong> and <strong>Zapier</strong> to create powerful integrations 
+                    and automations through various <strong>APIs</strong>. I'm also proficient in <strong>SQL</strong>, <strong>Python</strong>, and <strong>C#</strong>, 
                     constantly learning and adapting to new technological developments that can solve real-world problems.
                   </p>
                 </div>
@@ -155,9 +156,9 @@ const About = () => {
                     Creative Pursuits
                   </h3>
                   <p className="text-neutral-dark leading-relaxed">
-                    From building **online communities** to **perfume collecting**, I find joy in exploring **sensory 
-                    experiences** and **human connections**. These creative outlets complement my technical work and 
-                    help maintain a **balanced perspective** on life and learning.
+                    From building <strong>online communities</strong> to perfume collecting, I find joy in exploring <strong>sensory 
+                    experiences</strong> and human connections. These creative outlets complement my technical work and 
+                    help maintain a <strong>balanced perspective</strong> on life and learning.
                   </p>
                 </div>
               </div>
@@ -168,4 +169,5 @@ const About = () => {
       <Footer />
     </>;
 };
+
 export default About;
