@@ -18,15 +18,15 @@ const FunFacts = () => {
     },
     {
       title: "Perfume Collector",
-      description: "I run a 10,000+ member Facebook group for perfume enthusiasts, exploring the art of scents.",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800",
-      alt: "Artistic representation of scents and creativity"
+      description: "I run a 10,000 member Facebook group for perfume enthusiasts, exploring the art of scents.",
+      image: "/lovable-uploads/a06b5787-ce26-481d-9dce-a211decb3caf.png",
+      alt: "Elegant perfume bottles collection"
     },
     {
       title: "Morning Person",
       description: "I start each day with silence and green tea, finding peace in early morning moments.",
-      image: "https://images.unsplash.com/photo-1501286353178-1ec881214838?auto=format&fit=crop&w=800",
-      alt: "Peaceful morning scene with tea"
+      image: "/lovable-uploads/77e3e1ad-c099-41e1-a58e-fa94d4691f5e.png",
+      alt: "Peaceful morning tea scene in nature"
     },
     {
       title: "Plant Parent",
