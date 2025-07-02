@@ -72,13 +72,13 @@ const Hero = () => {
             On my first day teaching chess, I realized that breakthrough moments happen when complex ideas become simple. 
             As a business IT student at Corvinus University with <strong>10+ students coached</strong> and a{" "}
             <a 
-              href="https://www.facebook.com/groups/364356162784165/people/?should_open_welcome_member_composer=1"
+              href="https://www.facebook.com/groups/364356162784165"
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold text-blue-900 hover:text-blue-700 transition-colors duration-200 underline decoration-2 underline-offset-2"
             >
               10,000 member community
-            </a>, 
+            </a>,
             I turn confusion into confidence through technology and connection.
           </motion.p>
           
