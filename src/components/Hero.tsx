@@ -77,7 +77,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               className="font-bold text-blue-900 hover:text-blue-700 transition-colors duration-200 underline decoration-2 underline-offset-2"
             >
-              10,000 member community
+              10,000 member community owner
             </a>,
             I turn confusion into confidence through technology and connection.
           </motion.p>
