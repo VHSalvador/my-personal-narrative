@@ -12,13 +12,13 @@ const FunFacts = () => {
     },
     {
       title: "Multilingual Mind",
-      description: "I speak English (C1), Japanese (N3), Hungarian, and Spanish - connecting with people across cultures!",
+      description: "I speak English (C1), Japanese (N3), and Hungarian - connecting with people across cultures!",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800",
       alt: "Person studying languages"
     },
     {
       title: "Perfume Collector",
-      description: "I run a 6,000+ member Facebook group for perfume enthusiasts, exploring the art of scents.",
+      description: "I run a 10,000+ member Facebook group for perfume enthusiasts, exploring the art of scents.",
       image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800",
       alt: "Artistic representation of scents and creativity"
     },
