@@ -31,14 +31,14 @@ const FunFacts = () => {
     {
       title: "Plant Parent",
       description: "Proud caretaker of special houseplants, creating my own urban jungle.",
-      image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=800",
-      alt: "Indoor plants creating a cozy atmosphere"
+      image: "/lovable-uploads/2e7d64d5-f1c1-4f12-860f-11dafddaa2ff.png",
+      alt: "Beautiful indoor plant collection creating an urban jungle"
     },
     {
       title: "Chess Coach",
       description: "Teaching chess isn't just about the game - it's about strategy, patience, and mental agility.",
-      image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800",
-      alt: "Strategic thinking represented by nature"
+      image: "/lovable-uploads/623f452f-9c61-4500-8a6b-3f222e52a893.png",
+      alt: "Epic chess scene with mountains representing strategic thinking"
     }
   ];
 
