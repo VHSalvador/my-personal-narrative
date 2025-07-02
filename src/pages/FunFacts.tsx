@@ -13,8 +13,8 @@ const FunFacts = () => {
     {
       title: "Multilingual Mind",
       description: "I speak English (C1), Japanese (N3), and Hungarian - connecting with people across cultures!",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800",
-      alt: "Person studying languages"
+      image: "/lovable-uploads/4c6d7190-2b4c-4a4e-8fa5-4b2c5c24eb28.png",
+      alt: "Person with Japanese characters representing multilingual abilities"
     },
     {
       title: "Perfume Collector",
