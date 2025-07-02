@@ -7,7 +7,7 @@ const FunFacts = () => {
     {
       title: "Wall Climbing Enthusiast",
       description: "When I'm not coding or teaching, you'll find me scaling walls and pushing my physical limits.",
-      image: "https://images.unsplash.com/photo-1438565434616-3ef039228b15?auto=format&fit=crop&w=800",
+      image: "/lovable-uploads/b9503e52-d407-4e36-8e0f-bb155b0b1f33.png",
       alt: "Mountain climbing scene representing challenge and adventure"
     },
     {
